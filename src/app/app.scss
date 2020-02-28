@@ -14,3 +14,65 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@media (min-width: 766px) {
+    [hidden-sm-up] {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    [hidden-sm-down] {
+        display: none !important;
+    }
+}
+
+[validation-error-help] {
+    margin: 8px 16px;
+    height: 1.4rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: color($colors, warning);
+    text-align: center;
+}
+
+// customize toast
+.toast-success {
+    .toast-wrapper {
+        background: transparent;
+    }
+    .toast-container{
+        background: color($colors, success) !important;
+        opacity: 0.9;
+    }
+}
+
+.toast-warning {
+    .toast-wrapper {
+        background: transparent;
+    }
+    .toast-container{
+        background: color($colors, warning) !important;
+        opacity: 0.9;
+    }
+}
+
+.toast-danger {
+    .toast-wrapper {
+        background: transparent;
+    }
+    .toast-container{
+        background: color($colors, danger) !important;
+        opacity: 0.9;
+    }
+}
+
+.toast-normal {
+    .toast-wrapper {
+        background: transparent;
+    }
+    .toast-container{
+        background: black !important;
+        opacity: 0.9;
+    }
+}

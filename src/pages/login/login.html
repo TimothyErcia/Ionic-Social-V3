@@ -1,0 +1,33 @@
+<ion-content fullscreen padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8 hidden-sm-down>
+        <img src="../../assets/imgs/logo.png">
+      </ion-col>
+      <ion-col col-4 col-md-3 col-lg-3>
+        <form [formGroup]="todo">
+          <ion-label stacked>Username</ion-label>
+          <ion-item>
+            <ion-input formControlName="username" type="text"></ion-input>
+            <button item-end ion-button clear icon-only>
+              <ion-icon name="md-close"></ion-icon>
+            </button>
+          </ion-item>
+
+          <ion-label stacked>Password</ion-label>
+          <ion-item>
+            <ion-input formControlName="password" [type]="showType"></ion-input>
+            <button item-end ion-button clear icon-only (click)="showPassword()">
+              <ion-icon [name]="showIcon"></ion-icon>
+            </button>
+          </ion-item>
+
+          <button mode="md" type="submit" ion-button block (click)="login()">
+            SIGN IN
+          </button>
+          <p ion-text text-center>Need an account? <a>Sign Up</a></p>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
