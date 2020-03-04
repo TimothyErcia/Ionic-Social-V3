@@ -17,7 +17,7 @@
 
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js"></script>
   
   <script>
     if ('serviceWorker' in navigator) {
@@ -45,5 +45,8 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+  <link rel="preload" href="build/main.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="build/main.css"></noscript>
 </body>
 </html>

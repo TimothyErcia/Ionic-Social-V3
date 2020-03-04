@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Md5 } from 'ts-md5/dist/md5';
 import { FireService } from '../../environment';
 
@@ -12,15 +12,27 @@ import { FireService } from '../../environment';
 export class LoginPage {
 
   todo: FormGroup;
+  logginIn: boolean = false;
   showIcon = 'md-eye';
   showType = 'password';
   fireDB = new FireService;
+
+  validation_messages = {
+    'username' : [
+      { type: 'required', message: 'Please enter your username.' },
+    ],
+    'password' : [
+      { type: 'required', message: 'Please enter your password.' },
+    ]
+  }
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder,
+    public toastCtrl: ToastController) {
       this.todo = this.formBuilder.group({
-        username: [''],
-        password: ['']
+        username: ['', Validators.required],
+        password: ['', Validators.required]
       });
   }
 
@@ -34,20 +46,30 @@ export class LoginPage {
   }
 
   login(){
+    this.logginIn = true;
     let key = Md5.hashStr(this.todo.value.username);
-    this.fireDB.getAccount(key).once('value').then((snap) => {
-      if(snap != undefined || snap != null){
-        if(snap.val()._Username == this.todo.value.username && snap.val()._Password == this.todo.value.password){
-          console.log('WELCOME');
+    this.fireDB.getAccount(key).then((snap) => {
+      try {
+        if(snap.data()._Username == this.todo.value.username && snap.data()._Password == this.todo.value.password){
+          this.toastThis('Welcome ' + snap.data()._Name, 'toast-success');
+          this.logginIn = false;
         }
         else{
-          //Incorrect
+          this.toastThis('Incorrect Username or Password. Try again', 'toast-warning');
+          this.logginIn = false;
         }
-      }
-      else {
-        // Account does not exist
-      }
+      } catch { this.toastThis('Account does not exist', 'toast-danger'); this.logginIn = false; }
     });
+  }
+
+  toastThis(message, css){
+    this.toastCtrl.create({
+      cssClass: css,
+      message: message,
+      position: 'top',
+      showCloseButton: true,
+      duration: 6000
+    }).present();
   }
 
 

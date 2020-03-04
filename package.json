@@ -1,7 +1,7 @@
 {
   "name": "Ionic-Social-V3",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Timothy Justine O. Ercia",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -26,7 +26,7 @@
     "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-res": "^0.9.0",
-    "firebase": "^4.8.0",
+    "firebase": "^7.9.3",
     "ionic-angular": "3.9.9",
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
@@ -44,7 +44,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "typescript": "2.6.2"
   },
-  "description": "An Ionic project",
+  "description": "An Ionic Social project",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},

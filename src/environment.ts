@@ -18,9 +18,10 @@ export const snapshotToArray = snapshot => {
   return returnArr;
 };
 
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 export class FireService{
     
-    getAccount(acct){ return firebase.database().ref('accounts/' + acct); }
-    createAccount(){ return firebase.database().ref('accounts/'); }
+    getAccount(acct){ return firebase.firestore().collection('accounts').doc(acct).get(); }
+    createAccount(form){ return firebase.firestore().collection('accounts').add(form); }
 }
